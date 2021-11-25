@@ -29,7 +29,7 @@ func TaskTwo(h int, m int, s int) int {
 	const fullCircleHour = 12
 
 	hHalfDay := h % fullCircleHour
-	sFull := hHalfDay * secInHour + m * minInHour + s
+	sFull := hHalfDay*secInHour + m*minInHour + s
 	res := fullCircleDeg * sFull / fullCircleHour / secInHour
 	return res
 }
@@ -49,9 +49,9 @@ func TaskThree(i int, a int) (ans1 bool, ans2 bool, ans3 bool, ans4 bool) {
 	i4, _ := strconv.Atoi(s[3:4])
 
 	ans1 = (i1 + i2) == (i3 + i4)
-	ans2 = (i1 + i2 + i3 + i4) % 3 == 0
-	ans3 = (i1 * i2 * i3 * i4) % 4 == 0
-	ans4 = (i1 * i2 * i3 * i4) % a == 0
+	ans2 = (i1+i2+i3+i4)%3 == 0
+	ans3 = (i1*i2*i3*i4)%4 == 0
+	ans4 = (i1*i2*i3*i4)%a == 0
 	return
 }
 
