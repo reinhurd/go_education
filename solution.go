@@ -1,7 +1,6 @@
 package main
 
 import (
-	"strconv"
 	"time"
 )
 
@@ -11,10 +10,11 @@ import (
 //то получилось число 237. Написать функцию для нахождения числа x.
 func TaskOne() int {
 	res := 237
-	resString := strconv.Itoa(res)
-	firstDigit, _ := strconv.Atoi(resString[:1])
-	origIntWithoutLastDigit, _ := strconv.Atoi(resString[1:] + "0")
-	return origIntWithoutLastDigit + firstDigit
+	d3 := res % 10
+	d2 := (res - d3) % 100
+	d1 := (res - d3 - d2) / 100
+
+	return (d2 + d3) * 10 + d1
 }
 
 // TaskTwo Задача 2
@@ -42,11 +42,10 @@ func TaskTwo(h int, m int, s int) int {
 //3) кратно ли четырем произведение его цифр;
 //4) кратно ли произведение его цифр числу а.
 func TaskThree(i int, a int) (ans1 bool, ans2 bool, ans3 bool, ans4 bool) {
-	s := strconv.Itoa(i)
-	i1, _ := strconv.Atoi(s[0:1])
-	i2, _ := strconv.Atoi(s[1:2])
-	i3, _ := strconv.Atoi(s[2:3])
-	i4, _ := strconv.Atoi(s[3:4])
+	i4 := i % 10
+	i3 := (i % 100 - i4) / 10
+	i2 := ((i % 1000) - (i3 * 10) - i4) / 100
+	i1 := (i - i2 * 100 - i3 * 10 - i4) / 1000
 
 	ans1 = (i1 + i2) == (i3 + i4)
 	ans2 = (i1+i2+i3+i4)%3 == 0
