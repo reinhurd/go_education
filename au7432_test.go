@@ -62,6 +62,13 @@ func TestAu7432three(t *testing.T) {
 			},
 			[]string{"пять", "раз"},
 		},
+		{
+			[2]string{
+				"раз",
+				"два три",
+			},
+			[]string{"два", "раз", "три"},
+		},
 	}
 	for _, pair := range testData {
 		ans := Au7432three(pair.sentences)
