@@ -60,7 +60,7 @@ func TestAu7432three(t *testing.T) {
 				"раз два три три четыре",
 				"два три четыре четыре пять",
 			},
-			[]string{"раз", "пять"},
+			[]string{"пять", "раз"},
 		},
 	}
 	for _, pair := range testData {
