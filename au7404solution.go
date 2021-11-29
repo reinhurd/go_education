@@ -8,7 +8,7 @@ package main
 //	а) Найти k-й член последовательности Фибоначчи.
 //	б) Получить первые n членов последовательности Фибоначчи
 func Au7404one(n int, k int) (int, []int) {
-	var slice []int
+	var slice = []int{1}
 
 	previousFib := 0
 	currentFib := 1
@@ -33,35 +33,23 @@ func Au7404one(n int, k int) (int, []int) {
 // а) Определить сумму чисел последовательности, меньших n.
 // б) Найти два элемента последовательности (их порядковые номера и значение) в интервале,
 // между которыми находится значение n
-func Au7404two(array [15]float64, n int) (float64, float64, float64) {
-	nFloat := float64(n)
-	key := binarySearch(array, nFloat)
-	var sum float64
-	for _, i := range array[:key+1] {
-		sum += i
-	}
-
-	return sum, array[key], array[key+1]
+type Answer7404two struct {
+	sum                 float64
+	firstKey, secondKey int
+	firstVal, secondVal float64
 }
 
-func binarySearch(array [15]float64, nFloat float64) int {
-	const countAr = 15
-	maxKey := countAr - 1
+func Au7404two(array [15]float64, n int) Answer7404two {
+	nFloat := float64(n)
+	var sum float64
 
-	for lowKey := 0; lowKey <= maxKey; {
-		mid := (lowKey + maxKey) / 2
-		guess := array[mid]
-
-		if nFloat > array[mid] && nFloat < array[mid+1] {
-			return mid
+	for k, i := range array {
+		if nFloat < i {
+			return Answer7404two{sum, k, k + 1, array[k-1], i}
 		}
-		if guess < nFloat {
-			lowKey = mid + 1
-		} else {
-			maxKey = mid - 1
-		}
+		sum += i
 	}
-	return 0
+	return Answer7404two{}
 }
 
 //	Задача 3
@@ -90,8 +78,8 @@ func Au7404three(n int) bool {
 func Au7404four(a int, b int, k int) []int {
 	var result []int
 	for i := a; i <= b; i++ {
-		del := 0
-		for j := 1; j <= i; j++ {
+		del := 1
+		for j := 2; j <= i; j++ {
 			if i%j == 0 {
 				del++
 			}
